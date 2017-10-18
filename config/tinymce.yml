@@ -1,0 +1,14 @@
+default:
+  toolbar:
+    - bold italic underline | forecolor | image | link
+  plugins:
+    - textcolor
+    - image
+    - link
+
+alternate:
+  selector: textarea.table-editor
+  image_advtab: true,
+  plugins:
+    - table
+    - uploadimage
