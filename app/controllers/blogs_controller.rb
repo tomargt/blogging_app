@@ -62,6 +62,6 @@ class BlogsController < ApplicationController
 
   def current_blog
     @blog = current_user.blogs.find(params[:id]) rescue nil
-    redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?  
+    return redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?  
   end 
 end
