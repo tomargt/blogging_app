@@ -46,20 +46,14 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    if @blog.destroy
-      flash[:success] = "Blog has been deleted sucessfully."
-    else
-      flash[:danger] = @blog.errors.full_messages.join("<br>")
-    end
+    @blog.destroy
+    flash[:success] = "Blog has been deleted sucessfully."
     redirect_to my_blogs_blogs_path  
   end
 
   def archive
-    if @blog.toggle!(:is_archived)
-      flash[:success] = "Blog has been sucessfully archived."
-    else
-      flash[:danger] = @blog.errors.full_messages.join("<br>")
-    end  
+    @blog.toggle!(:is_archived)
+    flash[:success] = "Blog has been sucessfully archived."
     redirect_to my_blogs_blogs_path 
   end
 
