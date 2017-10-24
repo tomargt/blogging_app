@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BloggingApp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,6 +21,7 @@
             <% if !user_signed_in? %>
               <li class="nav-item">
                 <a class="nav-link" href="<%=user_session_path%>">Login</a>
+              </li>
               <% end %>
             <% if user_signed_in? %>
               <li class="nav-item active">
@@ -32,7 +32,6 @@
                 <a class="nav-link" href="<%= destroy_user_session_path %>" data-method='delete'>Logout</a>
               </li>
             <% end %>
-            </li>
           </ul>
         </div>
       </div>

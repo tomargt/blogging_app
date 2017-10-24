@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   before_action :current_blog, only: [:edit, :update, :publish, :archive, :destroy]
   
   def index
