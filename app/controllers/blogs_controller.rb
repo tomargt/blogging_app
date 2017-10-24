@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :current_blog, only: [:edit, :update, :publish, :archive, :destroy]
   
   def index
-    @blogs = Blog.published_not_archived.paginate(page: params[:page], per_page: 7)
+    @blogs = Blog.published_not_archived.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
   
   def new
@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.new(blog_params)
     if @blog.save
       flash[:success] = "Blog has been created sucessfully."
-      redirect_to @blog
+      redirect_to my_blogs_blogs_path
     else
       flash[:danger] = @blog.errors.full_messages.join("<br>")
       render 'new'
@@ -28,7 +28,7 @@ class BlogsController < ApplicationController
   def update
     if @blog.update(blog_params)
       flash[:success] = "Blog has been updated sucessfully."
-      redirect_to @blog
+      redirect_to my_blogs_blogs_path
     else
       flash[:danger] = @blog.errors.full_messages.join("<br>")
       render 'edit'
@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
   end
 
   def my_blogs
-    @blogs = current_user.blogs.not_archived.paginate(page: params[:page], per_page: 3)
+    @blogs = current_user.blogs.not_archived.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   def destroy
@@ -71,6 +71,6 @@ class BlogsController < ApplicationController
 
   def current_blog
     @blog = current_user.blogs.find(params[:id]) rescue nil
-    return redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?  
+    redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?  
   end 
 end

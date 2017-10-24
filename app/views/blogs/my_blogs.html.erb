@@ -1,34 +1,43 @@
-<%= link_to 'Write New Blog', new_blog_path %></p>
-<%= will_paginate @blogs %>
+<div class="col-xs-3">
+  <a class="navbar-brand" href="<%=new_blog_path%>">Write new Blog</a>
+</div>
+<div class="BootstrapPagination" style="float: right">
+  <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+</div>
 <div class="container">
-<div class="col-lg-12"> 
-<div class="row">
-  
-<% @blogs.each do |blog| %>
-  <tr>
-    <h1><%= blog.title.html_safe %></h1>
-    <td><%= blog.text.html_safe %></td>
-    <td><%= link_to 'Archive', archive_blog_path(blog),
-            method: :put,
-            data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'Publish', publish_blog_path(blog),
-            method: :put,
-            data: { confirm: 'Are you sure?' } %></td> 
-    <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-    <td><%= link_to 'Delete', blog_path(blog),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-  <div class="container">
-  <% blog.comments.each do |comment| %>
-    <p>
-      <strong>Commenter:</strong>
-      <%= comment.commenter %>
-    </p>
-     <p>
-      <strong>Comment:</strong>
-      <%= comment.comment %>
-    </p>
-  <% end %>
-<% end %>
-<%= link_to 'Back', root_url %>
+  <div class="col-lg-12"> 
+    <div class="row">      
+      <% @blogs.each do |blog| %>
+        <tr>
+          <h1><%= blog.title.html_safe %></h1><brk>
+          <td><%= blog.text.html_safe %></td>
+          <td><%= link_to 'Archive', archive_blog_path(blog),
+                  method: :put,
+                  data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Publish', publish_blog_path(blog),
+                  method: :put,
+                  data: { confirm: 'Are you sure?' } %></td> 
+          <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+          <td><%= link_to 'Delete', blog_path(blog),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <div class="container">
+          <% blog.comments.each do |comment| %>
+            <p>
+              <strong>Commenter:</strong>
+              <%= comment.commenter %>
+            </p>
+            <p>
+              <strong>Comment:</strong>
+              <%= comment.comment %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="BootstrapPagination" style="float: right">
+  <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+</div>

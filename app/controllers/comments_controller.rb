@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def create
     @blog = Blog.find(params[:blog_id]) rescue nil
-    return redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?
     @comment = @blog.comments.new(comment_params)
     if @comment.save
       flash[:success] = "Comment has been created successfully."

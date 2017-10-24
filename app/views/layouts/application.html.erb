@@ -11,26 +11,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <% flash.each do |message_type, message| %> 
-      <div class="alert alert-<%= message_type %>">
-        <%= message.html_safe %>
-      </div> 
-    <% end %>
-
-
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="<%=root_url%>">Blogging App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="<%=root_url%>">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
+          <ul class="navbar-nav ml-auto" style="float: right">
             <% if !user_signed_in? %>
               <li class="nav-item">
                 <a class="nav-link" href="<%=user_session_path%>">Login</a>
@@ -42,7 +30,6 @@
               </li> 
               <li class="nav-item">
                 <a class="nav-link" href="<%= destroy_user_session_path %>" data-method='delete'>Logout</a>
-              
               </li>
             <% end %>
             </li>
@@ -50,23 +37,18 @@
         </div>
       </div>
     </nav>
-  
+    <% flash.each do |message_type, message| %> 
+      <div class="alert alert-<%= message_type %>">
+        <%= message.html_safe %>
+      </div> 
+    <% end %>
     <%= yield %>
-</body>
-</html>
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; tomargt</p>
-      </div>
-      <!-- /.container -->
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
-
+  <footer class="bg-dark fixed-bottom">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; tomargt</p>
+    </div>
+  </footer>
+</html>
 

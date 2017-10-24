@@ -4,10 +4,10 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem 'will_paginate-bootstrap'
 gem 'tinymce-rails'
 gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'carrierwave', '~> 1.0'
 gem 'pry'
@@ -31,11 +31,12 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+ruby '2.4.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

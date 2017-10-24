@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20171010163738) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picture"
     t.boolean "is_published", default: false
     t.bigint "user_id"
     t.boolean "is_archived", default: false

@@ -1,39 +1,42 @@
-<%= will_paginate @blogs %>
+<div class="BootstrapPagination" style="float: right">
+  <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+</div> 
 <div class="container">
-<div class="col-lg-12"> 
-<div class="row">
-<% @blogs.each do |blog| %>
-  <h1><%= blog.title.html_safe %></h1>
-  <td><%= blog.text.html_safe %></td>
-  <h2>Comments</h2>
-  <div class="container">
-  <% blog.comments.each do |comment| %>
-    <p>
-      <strong>Commenter:</strong>
-      <%= comment.commenter %>
-    </p>
-     <p>
-      <strong>Comment:</strong>
-      <%= comment.comment %>
-    </p>
-  <% end %>
-  <h2>Add a comment:</h2>
-  <%= form_with(model: [ blog, blog.comments.build ], local: true) do |form| %>
-    <p>
-      <div class="card my-4">
-        <h5 class="card-header">Your name:</h5>
-        <div class="card-body">
-          <%= form.text_field :commenter %>
-        </div>
-        <h5 class="card-header">Leave a Comment:</h5>
-        <div class="card-body">
-          <%= form.text_field :comment %>
-        </div>
-      </div>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-<% end %>
-<%= will_paginate @blogs %>
+  <div class="col-lg-12"> 
+    <div class="row">
+      <% @blogs.each do |blog| %>
+        <h1><%= blog.title.html_safe %></h1><brk>
+        <td><%= blog.text.html_safe %></td>
+        <div class="container">
+          <h2>Comments</h2>
+          <% blog.comments.each do |comment| %>
+            <p>
+              <strong>Commenter:</strong>
+              <%= comment.commenter %>
+            </p>
+            <p>
+              <strong>Comment:</strong>
+              <%= comment.comment %>
+            </p>
+          <% end %>
+          <h2>Add a comment:</h2>
+          <%= form_with(model: [ blog, blog.comments.build ], local: true) do |form| %>
+            <div class="card my-4">
+              <h5 class="card-header">Your name:</h5>
+              <div class="card-body">
+                <%= form.text_field :commenter %>
+              </div>
+              <h5 class="card-header">Leave a Comment:</h5>
+              <div class="card-body">
+                <%= form.text_field :comment %>
+              </div>
+            </div><%= form.submit %>           
+          </div>   
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="BootstrapPagination" style="float: right">
+  <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
+</div>

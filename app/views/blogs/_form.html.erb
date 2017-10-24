@@ -1,18 +1,12 @@
-<%= form_with model: @blog,  html: { multipart: true }, local: true do |form| %>
+<%= form_with model: @blog, local: true do |form| %>
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
-   <p>
+  <p>
     <%= form.label :Content %><br>
     <%= form.text_area :text, :class => "tinymce", :rows => 10, :cols => 120 %>
     <%= tinymce %>
     <%= form.submit %>
   </p>
 <% end %>
-
-<script type="text/javascript">
-tinyMCE.init({
-  selector: '.tinymce'
-  });
-</script>
