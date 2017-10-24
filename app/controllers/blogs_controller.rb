@@ -11,9 +11,6 @@ class BlogsController < ApplicationController
     @blog = current_user.blogs.new
   end
 
-  def edit
-  end
-
   def create
     @blog = current_user.blogs.new(blog_params)
     if @blog.save
