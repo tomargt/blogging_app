@@ -13,4 +13,5 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require tinymce-jquery
+//= require social-share-button
 //= require_tree .

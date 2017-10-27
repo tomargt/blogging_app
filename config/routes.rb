@@ -6,9 +6,11 @@ Rails.application.routes.draw do
     member do
       put 'publish'
       put 'archive'
+      get 'view'
     end
     collection do
       get 'my_blogs'
+      get 'archived_blogs'
     end
   	resources :comments
 	end

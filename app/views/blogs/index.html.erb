@@ -6,10 +6,11 @@
     <div class="row">
       <% @blogs.each do |blog| %>
         <h1><%= blog.title.html_safe %></h1><brk>
-        <td><%= blog.text.html_safe %></td>
+        <td><%= blog.published_at %></td><brk>
+        <td><%= link_to 'Show', blog_path(blog) %></td>
         <div class="container">
           <h2>Comments</h2>
-          <% blog.comments.each do |comment| %>
+          <% blog.comments.limit(3).each do |comment| %>
             <p>
               <strong>Commenter:</strong>
               <%= comment.commenter %>
@@ -19,19 +20,9 @@
               <%= comment.comment %>
             </p>
           <% end %>
-          <h2>Add a comment:</h2>
-          <%= form_with(model: [ blog, blog.comments.build ], local: true) do |form| %>
-            <div class="card my-4">
-              <h5 class="card-header">Your name:</h5>
-              <div class="card-body">
-                <%= form.text_field :commenter %>
-              </div>
-              <h5 class="card-header">Leave a Comment:</h5>
-              <div class="card-body">
-                <%= form.text_field :comment %>
-              </div>
-            </div><%= form.submit %>           
-          <% end %>  
+          <% if blog.comments.count >= 3 %>
+            <%= link_to 'view_all', blog_comments_path(blog.id) %>
+          <% end %>
         </div>
       <% end %>
     </div>

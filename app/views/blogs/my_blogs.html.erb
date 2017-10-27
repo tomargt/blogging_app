@@ -1,5 +1,6 @@
 <div class="col-xs-3">
   <a class="navbar-brand" href="<%=new_blog_path%>">Write new Blog</a>
+  <a class="navbar-brand" href="<%=archived_blogs_blogs_path%>">Archived Blogs</a>
 </div>
 <div class="BootstrapPagination" style="float: right">
   <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
@@ -7,33 +8,29 @@
 <div class="container">
   <div class="col-lg-12"> 
     <div class="row">      
-      <% @blogs.each do |blog| %>
+      <% @blogs.each do |blog| %><brk>
         <tr>
-          <h1><%= blog.title.html_safe %></h1><brk>
-          <td><%= blog.text.html_safe %></td>
-          <td><%= link_to 'Archive', archive_blog_path(blog),
-                  method: :put,
-                  data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to 'Publish', publish_blog_path(blog),
-                  method: :put,
-                  data: { confirm: 'Are you sure?' } %></td> 
+          <h2><%= blog.title.html_safe %></h2>
+          <td><%= link_to 'Show', blog_path(blog) %></td>
           <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
           <td><%= link_to 'Delete', blog_path(blog),
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <div class="container">
-          <% blog.comments.each do |comment| %>
-            <p>
-              <strong>Commenter:</strong>
-              <%= comment.commenter %>
-            </p>
-            <p>
-              <strong>Comment:</strong>
-              <%= comment.comment %>
-            </p>
+          <% if blog.archived? %>
+            <strong style="color: red;">Blog is Archived</strong>
+          <% else %>
+            <td><%= link_to 'Archive', archive_blog_path(blog),
+                    method: :put,
+                    data: { confirm: 'Are you sure?' } %></td>
           <% end %>
-        </div>
+          <% if blog.published?  %>
+            <strong style="color: green;">Blog is Published</strong>
+          <% elsif !blog.archived? %>
+            <td><%= link_to 'Publish', publish_blog_path(blog),
+                    method: :put,
+                    data: { confirm: 'Are you sure?' } %></td>
+          <% end %>          
+        </tr>        
       <% end %>
     </div>
   </div>

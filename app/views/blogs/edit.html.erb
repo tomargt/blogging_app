@@ -1,4 +1,17 @@
 <h1>Edit blog</h1>
-<%= render 'form' %>
+<%= form_with model: @blog, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :Content %><br>
+    <%= form.text_area :text, :class => "tinymce", :rows => 10, :cols => 120 %>
+    <%= tinymce %>
+    <div class="actions">
+      <p><%= form.submit "Update", :name => "Update" %>
+     </p>
+    </div>
+  </p>
+<% end %>
 <%= link_to 'Back to my blogs', my_blogs_blogs_path %></p>
-<%= link_to 'All Blogs', blogs_path %>

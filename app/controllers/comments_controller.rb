@@ -1,8 +1,12 @@
 class CommentsController < ApplicationController
 
+  before_action :find_blog, only: [:create, :index]
+
+  def index
+    @comments = @blog.comments
+  end
+
   def create
-    @blog = Blogs.find(params[:blog_id]) rescue nil
-    return redirect_to root_url, flash: { danger: "not authorized" } if @blog.blank?
     @comment = @blog.comments.new(comment_params)
     if @comment.save
       flash[:success] = "Comment has been created successfully."
@@ -13,6 +17,12 @@ class CommentsController < ApplicationController
   end
  
   private
+
+  def find_blog
+    @blog = Blog.find(params[:blog_id]) rescue nil
+    return redirect_to root_url, flash: { danger: "Blog does not exist" } if @blog.blank? 
+    return redirect_to root_url, flash: { danger: "Blog not published" } unless @blog.published?
+  end
 
   def comment_params
     params.require(:comment).permit(:commenter, :comment)

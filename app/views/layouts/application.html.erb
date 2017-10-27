@@ -38,16 +38,16 @@
     </nav>
     <% flash.each do |message_type, message| %> 
       <div class="alert alert-<%= message_type %>">
-        <%= message.html_safe %>
+        <%= message.html_safe unless message.blank?%>
       </div> 
     <% end %>
     <%= yield %>
   </body>
 </html>
-  <footer class="bg-dark fixed-bottom">
+<!--   <footer class="bg-dark fixed-bottom">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; tomargt</p>
     </div>
-  </footer>
+  </footer> -->
 </html>
 

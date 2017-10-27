@@ -7,6 +7,9 @@
     <%= form.label :Content %><br>
     <%= form.text_area :text, :class => "tinymce", :rows => 10, :cols => 120 %>
     <%= tinymce %>
-    <%= form.submit %>
+    <div class="actions">
+      <p><%= form.submit "Publish", :name => "publish" %>
+      <%= form.submit "Save as Draft", :name => "draft" %></p>
+    </div>
   </p>
 <% end %>
