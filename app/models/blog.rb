@@ -10,7 +10,7 @@ class Blog < ApplicationRecord
   scope :draft_blogs, -> {with_status(:draft)}
   scope :user_blogs, -> {with_status(:published, :draft, :archived)} 
 
-  before_save :published_post
+  # before_save :published_post
   
   state_machine :status, initial: :draft do
     event :publish do
@@ -20,6 +20,7 @@ class Blog < ApplicationRecord
       transition [:draft, :published]  => :archived
     end
   end
+  
   def published_post
     if self.published? == true
       self.published_at = Time.now

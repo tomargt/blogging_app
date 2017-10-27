@@ -10,7 +10,7 @@
     <div class="row"> 
       <tr>
         <h1><%= @blog.title.html_safe %></h1><brk>
-        <%= social_share_button_tag(@blog.title, :allow_sites => %w( facebook)) %>
+        <strong>SHARE:</strong><%= social_share_button_tag(@blog.title, :allow_sites => %w( facebook twitter)) %>
         <td><%= @blog.published_at %></td>
         <td><%= @blog.text.html_safe %></td>
 			</tr>

@@ -49,7 +49,7 @@ class BlogsController < ApplicationController
   end
 
   def my_blogs
-    @blogs = current_user.blogs.user_blogs.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
+    @blogs = current_user.blogs.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
   end
 
   def destroy
