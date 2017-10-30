@@ -1,29 +1,31 @@
 <div class="col-xs-3">
   <a class="navbar-brand" href="<%=new_blog_path%>">Write new Blog</a>
 </div>
+
 <div class="BootstrapPagination" style="float: right">
   <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
 </div>
+
 <h1>Archived blogs:</h1>
- <div class="container"> 
-<div class="col-lg-12"> 
-  <div class="row">      
-    <% @blogs.each do |blog| %>
-      <tr>
+<div class="container"> 
+  <div class="col-lg-12"> 
+    <div class="row">      
+      <% @blogs.each do |blog| %>
+        <tr>
         <h1><%= blog.title.html_safe %></h1><brk>             
         <td><%= link_to 'Delete', blog_path(blog),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <div class="container">
-        <% blog.comments.each do |comment| %>
-          <p>
-            <strong>Commenter:</strong>
-            <%= comment.commenter %>
-          </p>
-          <p>
-            <strong>Comment:</strong>
-            <%= comment.comment %>
+        </tr>
+        <div class="container">
+          <% blog.comments.each do |comment| %>
+            <p>
+              <strong>Commenter:</strong>
+              <%= comment.commenter %>
+            </p>
+            <p>
+              <strong>Comment:</strong>
+              <%= comment.comment %>
           </p>
           <td>
         <% end %>
@@ -31,6 +33,7 @@
     <% end %>
   </div>
 </div>
+
 <div class="BootstrapPagination" style="float: right">
   <%= will_paginate @blogs, renderer: BootstrapPagination::Rails %>
 </div>
