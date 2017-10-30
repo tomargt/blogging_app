@@ -10,7 +10,7 @@ class Blog < ApplicationRecord
   scope :draft_blogs, -> {with_status(:draft)}
   scope :user_blogs, -> {with_status(:published, :draft, :archived)} 
 
-  # before_save :published_post
+  before_save :published_post
   
   state_machine :status, initial: :draft do
     event :publish do
