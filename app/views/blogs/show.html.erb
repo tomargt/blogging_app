@@ -36,9 +36,6 @@
             <%= comment.comment %>
           </p>
         <% end %>
-        <% if @blog.comments.count >= 3 %>
-          <%= link_to 'view_all', blog_comments_path(blog.id) %>
-        <% end %>
         <h2>Add a comment:</h2>
         <%= form_with(model: [ @blog, @blog.comments.build ], local: true) do |form| %>
           <div class="card my-4">

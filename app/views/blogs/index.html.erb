@@ -9,8 +9,8 @@
         <td><%= blog.published_at %></td><brk>
         <td><%= link_to 'Show', blog_path(blog) %></td>
         <div class="container">
-          <h2>Comments</h2>
-          <% blog.comments.limit(3).each do |comment| %>
+          
+          <% blog.comments.limit(2).each do |comment| %>
             <p>
               <strong>Commenter:</strong>
               <%= comment.commenter %>
@@ -20,8 +20,8 @@
               <%= comment.comment %>
             </p>
           <% end %>
-          <% if blog.comments.count >= 3 %>
-            <%= link_to 'view_all', blog_comments_path(blog.id) %>
+          <% if blog.comments.count >= 2 %>
+            <%= link_to 'view all comments', blog_comments_path(blog.id) %>
           <% end %>
         </div>
       <% end %>
