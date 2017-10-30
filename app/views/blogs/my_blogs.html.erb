@@ -11,6 +11,7 @@
       <% @blogs.each do |blog| %><brk>
         <tr>
           <h2><%= blog.title.html_safe %></h2>
+          <td><%= blog.published_at %></td><brk>
           <td><%= link_to 'Show', blog_path(blog) %></td>
           <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
           <td><%= link_to 'Delete', blog_path(blog),

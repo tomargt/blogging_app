@@ -9,7 +9,6 @@
         <td><%= blog.published_at %></td><brk>
         <td><%= link_to 'Show', blog_path(blog) %></td>
         <div class="container">
-          
           <% blog.comments.limit(2).each do |comment| %>
             <p>
               <strong>Commenter:</strong>

@@ -10,8 +10,7 @@
   <div class="row">      
     <% @blogs.each do |blog| %>
       <tr>
-        <h1><%= blog.title.html_safe %></h1><brk>
-             
+        <h1><%= blog.title.html_safe %></h1><brk>             
         <td><%= link_to 'Delete', blog_path(blog),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
