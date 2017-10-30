@@ -8,9 +8,7 @@ class Blog < ApplicationRecord
   scope :published_blogs, -> { with_status(:published)}
   scope :archived_blogs, -> {with_status(:archived)}
   scope :draft_blogs, -> {with_status(:draft)}
-  scope :user_blogs, -> {with_status(:published, :draft, :archived)} 
-
-  before_save :published_post
+  scope :user_blogs, -> {with_status(:published, :draft, :archived)}
   
   state_machine :status, initial: :draft do
     event :publish do
@@ -21,8 +19,8 @@ class Blog < ApplicationRecord
     end
   end
   
-  def published_post
-    if self.published? == true
+  before_save do
+    if self.published? == false
       self.published_at = Time.now
     end
   end

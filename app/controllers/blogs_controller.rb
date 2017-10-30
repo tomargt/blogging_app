@@ -45,7 +45,7 @@ class BlogsController < ApplicationController
   def publish
     @blog.publish
     flash[:success] = "Blog has been sucessfully published."
-    redirect_to my_blogs_blogs_path 
+    redirect_to my_blogs_blogs_path
   end
 
   def my_blogs
