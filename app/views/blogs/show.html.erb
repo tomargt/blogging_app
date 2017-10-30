@@ -41,10 +41,9 @@
           <div class="card my-4">
 
           <% if user_signed_in? %>
-          <h5 class="card-header">Your email:</h5>
+          <h5 class="card-header">Your username:</h5>
             <div class="card-body">
-              <%= form.text_field :commenter, value: current_user.email %>              
-
+              <%= form.text_field :commenter, value: current_user.username %>
             </div>
           <% end %>
           <% if !user_signed_in? %>
